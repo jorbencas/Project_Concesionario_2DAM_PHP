@@ -1,3 +1,4 @@
-<?php 
-    require "./views/index.view.php"
+<?php
+    require 'utils/utils.php';
+require "./controlador/empleados.php"
 ?>
