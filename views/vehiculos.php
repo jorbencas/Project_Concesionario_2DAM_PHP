@@ -1,12 +1,12 @@
 <?php include __DIR__. "/partials/header.view.part.php" ?>
 
-    <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#modal_vehiculo">Añadir Vehiculo</button>
+    <!--<button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#modal_vehiculo">Añadir Vehiculo</button>
     <br>
 
     <div class="modal fade" id="modal_vehiculo" role="dialog">
         <div class="modal-dialog bg-dark">
 
-            <!-- Modal content-->
+
             <div class="modal-content bg-dark">
                 <div class="modal-header bg-dark">
 
@@ -14,7 +14,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body bg-dark">
-                    <?=include __DIR__.'/partials/form_vehiculo.view.php'?>
+
                 </div>
                 <div class="modal-footer bg-dark">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -22,7 +22,7 @@
             </div>
 
         </div>
-    </div>
+    </div>-->
 
     <table class="table table-hover table-dark">
         <thead>

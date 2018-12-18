@@ -1,30 +1,7 @@
 <?php include __DIR__. "/partials/header.view.part.php" ?>
 
 
-    <button type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal">Añadir Empleado</button>
 
-    <br>
-
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content bg-dark">
-                <div class="modal-header bg-dark">
-
-                    <h4 class="modal-title">Modal Header</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body bg-dark">
-                    <?=include __DIR__.'/partials/form.view.php'?>
-                </div>
-                <div class="modal-footer bg-dark">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
 
 
