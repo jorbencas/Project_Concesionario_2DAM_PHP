@@ -70,7 +70,7 @@ abstract class QueryBuilder
         }
     }
     public function delete(string $atributo, int $id){
-        $sql="SELECT * FROM $this->table WHERE $atributo=$id";
+        $sql="DELETE FROM $this->table WHERE $atributo=$id";
         $pdostatement=$this->connection->prepare($sql);
         if($pdostatement->execute()===false){
             throw new QueryException("no se ha podido ejecutar la query");
