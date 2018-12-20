@@ -35,7 +35,6 @@ abstract class QueryBuilder
 
     public function findAll(){
         $sql="SELECT * FROM $this->table";
-        //$this->connection->query($sql);
         $pdostatement=$this->connection->prepare($sql);
         if($pdostatement->execute()===false){
             throw new QueryException("No se ha podido ejecutar la query");
@@ -70,7 +69,14 @@ abstract class QueryBuilder
             throw new PDOException("Error al insertar en la BDA");
         }
     }
-
+    public function delete(string $atributo, int $id){
+        $sql="SELECT * FROM $this->table WHERE $atributo=$id";
+        $pdostatement=$this->connection->prepare($sql);
+        if($pdostatement->execute()===false){
+            throw new QueryException("no se ha podido ejecutar la query");
+        }
+        return $pdostatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
+    }
 
 
 

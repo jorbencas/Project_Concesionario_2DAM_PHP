@@ -14,7 +14,7 @@ class Empleado implements IEntity
     private $primer_apellido;
     private $segundo_apellido;
     private $dni;
-    private $dni_letra;
+    private $letra;
     private $movil_1;
     private $movil_2;
     private $movil_3;
@@ -37,20 +37,20 @@ class Empleado implements IEntity
      * @param $tarjeta
      * @param $id
      */
-    public function __construct($tipo = 0, $nombre = "", $apellido_uno = "", $apellido_segundo = "", $dni = 0, $dni_letra = '', $telefono1 = 0, $telefono2 = 0, $telefono3 = 0, $fijo = 0, $tarjeta = 0, $id = 0)
+    public function __construct($id = 0, $tipo = 0, $nombre = "", $apellido_uno = "", $apellido_segundo = "", $dni = 0, $dni_letra = '', $telefono1 = 0, $telefono2 = 0, $telefono3 = 0, $fijo = 0, $tarjeta = 0)
     {
+        $this->id = $id;
         $this->tipo = $tipo;
         $this->nombre = $nombre;
         $this->primer_apellido = $apellido_uno;
         $this->segundo_apellido = $apellido_segundo;
         $this->dni = $dni;
-        $this->dni_letra = $dni_letra;
+        $this->letra = $dni_letra;
         $this->movil_1 = $telefono1;
         $this->movil_2 = $telefono2;
         $this->movil_3 = $telefono3;
         $this->fijo = $fijo;
         $this->tarjeta = $tarjeta;
-        $this->id = $id;
     }
 
     /**
@@ -251,18 +251,18 @@ class Empleado implements IEntity
     public function toArray():array
     {
         return[
+            'id'=>$this->getId(),
             'tipo'=>$this->getTipo(),
             'nombre'=>$this->getNombre(),
-            'apellido_uno'=>$this->getApellidoUno(),
-            'apellido_dos'=>$this->getApellidoSegundo(),
+            'primer_apellido'=>$this->getApellidoUno(),
+            'segundo_apellido'=>$this->getApellidoSegundo(),
             'dni'=>$this->getDni(),
-            'dni_letra'=>$this->getDniLetra(),
-            'telefono1'=>$this->getTelefono1(),
-            'telefono2'=>$this->getTelefono2(),
-            'telefono3'=>$this->getTelefono3(),
+            'letra'=>$this->getDniLetra(),
+            'movil_1'=>$this->getTelefono1(),
+            'movil_2'=>$this->getTelefono2(),
+            'movil_3'=>$this->getTelefono3(),
             'fijo'=>$this->getFijo(),
-            'tarjeta'=>$this->getTarjeta(),
-            'id'=>$this->getId()
+            'tarjeta'=>$this->getTarjeta()
         ];
     }
 }

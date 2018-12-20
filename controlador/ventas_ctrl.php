@@ -25,8 +25,8 @@ try {
     $VehiculoRepository=new VehiculosRepository();
     $imagenes='';
     if ($_SERVER['REQUEST_METHOD']==='POST'){
-
         $matricula = trim(htmlspecialchars($_POST['matricula']));
+        $matriculaexistente =  $empleadoRepository->findId($matricula,'matricula');
         $kilometros = trim(htmlspecialchars($_POST['kilometros']));
         $precio = trim(htmlspecialchars($_POST['precio']));
         $anyo = trim(htmlspecialchars($_POST['anyo']));
@@ -34,20 +34,19 @@ try {
         $modelo = trim(htmlspecialchars($_POST['modelo']));
         $id_empleado = trim(htmlspecialchars($_POST['id_empleado']));
 
-        $mensaje = 'Datos enviados';
-
-
-        $vehiculo=new Vehiculo();
-        $VehiculoRepository->save($vehiculo);
-        $mensaje='Se ha guardado la imagen';
-        $descripcion='';
-
+        if ($matriculaexistente){
+            echo "Este vehiculo con matricul:".$matricula."ya existe";
+        }else{
+            $vehiculo=new Vehiculo($matricula, $kilometros, $precio, $anyo, $marca, $modelo, $id_empleado);
+            $VehiculoRepository->save($vehiculo);
+        }
+    }elseif (isset($_GET['matricula'])) {
+        $VehiculoRepository->delete("matricula", $_GET['matricula']);
+    }elseif (isset($_GET['id'])){
+        $imagenes=$VehiculoRepository->findId($_GET['id'], 'id_empleado');
+    }else{
+        $imagenes=$VehiculoRepository->findAll();
     }
-
-    //$imagenes=$VehiculoRepository->findAll();
-    $imagenes=$VehiculoRepository->findId($_GET['id'], 'id_empleado');
-
-
 }catch (QueryException $exception){
     throw new QueryException('Error de BDA');
 }catch (FileException $exception){

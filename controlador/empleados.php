@@ -18,8 +18,8 @@ try {
     $empleadoRepository=new EmpleadoRepository();
     $imagenes='';
     if ($_SERVER['REQUEST_METHOD']==='POST'){
-
         $id = trim(htmlspecialchars($_POST['id']));
+        $id_valido = $empleadoRepository->findId($id,'id');
         $nombre = trim(htmlspecialchars($_POST['nombre']));
         $primear_apellido = trim(htmlspecialchars($_POST['primer_apellido']));
         $segundo_apellido = trim(htmlspecialchars($_POST['segundo_apellido']));
@@ -31,20 +31,18 @@ try {
         $tipo = trim(htmlspecialchars($_POST['tipo']));
         $tarjeta = trim(htmlspecialchars($_POST['tarjeta']));
 
+        if ($id_valido){
+            echo "Este empleado con id:".$id."ya existe";
+        }else{
+            $empleado=new Empleado($id,$tipo,$nombre, $primear_apellido, $segundo_apellido,$dni, $letra, $movil_1,$movil_2,$fijo,$tarjeta);
+            $empleadoRepository->save($empleado);
+        }
 
-        $mensaje = 'Datos enviados';
-
-
-        $empleado=new Empleado($tipo,$nombre, $primear_apellido, $segundo_apellido,$dni, $letra, $movil_1,$movil_2,$fijo,$tarjeta,$id);
-        $empleadoRepository->save($empleado);
-
-        $mensaje='Se ha guardado la imagen';
-
-
+    }elseif (isset($_GET['id'])) {
+        $empleadoRepository->delete("id", $_GET['id']);
+    }else {
+        $imagenes = $empleadoRepository->findAll();
     }
-
-    $imagenes=$empleadoRepository->findAll();
-
 
 }catch (QueryException $exception){
     throw new QueryException('Error de BDA');
